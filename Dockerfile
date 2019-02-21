@@ -139,6 +139,6 @@ RUN wget https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/all
     && rm allure-2.7.0.tgz \
     && ln -s /allure-2.7.0/bin/allure /usr/bin/allure
 
-ENV PATH="/UA/allure-2.7.0/bin:${PATH}"
+ENV PATH="/allure-2.7.0/bin:${PATH}"
 
 EXPOSE 80
