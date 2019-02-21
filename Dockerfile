@@ -1,6 +1,7 @@
 FROM anapsix/alpine-java
 
-ENV NGINX_VERSION 1.15.8
+ENV NGINX_VERSION=1.15.8 \
+    ALLURE_VERSION=2.7.0
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
@@ -134,11 +135,11 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
-RUN wget https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.7.0/allure-2.7.0.tgz \
-    && tar zxvf allure-2.7.0.tgz \
-    && rm allure-2.7.0.tgz \
-    && ln -s /allure-2.7.0/bin/allure /usr/bin/allure
+RUN wget https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/$ALLURE_VERSION/allure-$ALLURE_VERSION.tgz \
+    && tar zxvf allure-$ALLURE_VERSION.tgz \
+    && rm allure-$ALLURE_VERSION.tgz \
+    && ln -s /$ALLURE_VERSION/bin/allure /usr/bin/allure
 
-ENV PATH="/allure-2.7.0/bin:${PATH}"
+ENV PATH="/allure-$ALLURE_VERSION/bin:${PATH}"
 
 EXPOSE 80
