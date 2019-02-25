@@ -148,6 +148,3 @@ COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 STOPSIGNAL SIGTERM
 
 EXPOSE 80
-
-CMD ["/bin/sh", "allure/generate_reports.sh"]
-CMD ["nginx", "-g", "daemon off;"]
