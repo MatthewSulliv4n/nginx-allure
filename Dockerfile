@@ -142,6 +142,12 @@ RUN wget https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/$ALLURE_V
 
 ENV PATH="/allure-$ALLURE_VERSION/bin:${PATH}"
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
+
+STOPSIGNAL SIGTERM
+
+CMD ["/bin/sh", "generate_reports.sh"]
+CMD ["nginx", "-g", "daemon off;"]
