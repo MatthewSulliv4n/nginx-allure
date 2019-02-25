@@ -145,9 +145,11 @@ ENV PATH="/allure-$ALLURE_VERSION/bin:${PATH}"
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
-
 STOPSIGNAL SIGTERM
 
-CMD ["/bin/sh", "generate_reports.sh"]
+ADD ./allure /allure
+
+CMD ["/bin/sh", "allure/generate_reports.sh"]
 CMD ["nginx", "-g", "daemon off;"]
+
+EXPOSE 8080:80
